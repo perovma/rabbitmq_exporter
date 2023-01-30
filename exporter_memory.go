@@ -12,7 +12,7 @@ func init() {
 }
 
 var (
-	memoryLabels = []string{"cluster", "node", "self"}
+	memoryLabels = []string{"clustername", "node", "self"}
 
 	memoryGaugeVec = map[string]*prometheus.GaugeVec{
 		"memory.allocated_unused": newGaugeVec(

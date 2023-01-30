@@ -20,7 +20,7 @@ const (
 	endpointScrapeDuration contextValues = "endpointScrapeDuration"
 	endpointUpMetric       contextValues = "endpointUpMetric"
 	nodeName               contextValues = "node"
-	clusterName            contextValues = "cluster"
+	clusterName            contextValues = "clustername"
 	totalQueues            contextValues = "totalQueues"
 )
 
@@ -59,9 +59,9 @@ func newExporter() *exporter {
 	}
 
 	return &exporter{
-		upMetric:                     newGaugeVec("up", "Was the last scrape of rabbitmq successful.", []string{"cluster", "node"}),
-		endpointUpMetric:             newGaugeVec("module_up", "Was the last scrape of rabbitmq successful per module.", []string{"cluster", "node", "module"}),
-		endpointScrapeDurationMetric: newGaugeVec("module_scrape_duration_seconds", "Duration of the last scrape in seconds", []string{"cluster", "node", "module"}),
+		upMetric:                     newGaugeVec("up", "Was the last scrape of rabbitmq successful.", []string{"cluster123", "node"}),
+		endpointUpMetric:             newGaugeVec("module_up", "Was the last scrape of rabbitmq successful per module.", []string{"clustername", "node", "module"}),
+		endpointScrapeDurationMetric: newGaugeVec("module_scrape_duration_seconds", "Duration of the last scrape in seconds", []string{"clustername", "node", "module"}),
 		exporter:                     enabledExporter,
 		overviewExporter:             newExporterOverview(),
 		lastScrapeOK:                 true, //return true after start. Value will be updated with each scraping

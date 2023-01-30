@@ -13,7 +13,7 @@ func init() {
 }
 
 var (
-	queueLabels    = []string{"cluster", "vhost", "queue", "durable", "policy", "self"}
+	queueLabels    = []string{"clustername", "vhost", "queue", "durable", "policy", "self"}
 	queueLabelKeys = []string{"vhost", "name", "durable", "policy", "state", "node", "idle_since"}
 
 	queueGaugeVec = map[string]*prometheus.GaugeVec{

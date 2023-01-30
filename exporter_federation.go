@@ -11,7 +11,7 @@ func init() {
 }
 
 var (
-	federationLabels     = []string{"cluster", "vhost", "node", "queue", "exchange", "self", "status"}
+	federationLabels     = []string{"clustername", "vhost", "node", "queue", "exchange", "self", "status"}
 	federationLabelsKeys = []string{"vhost", "status", "node", "queue", "exchange"}
 )
 

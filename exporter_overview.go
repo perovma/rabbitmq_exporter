@@ -12,7 +12,7 @@ func init() {
 }
 
 var (
-	overviewLabels = []string{"cluster"}
+	overviewLabels = []string{"clustername"}
 
 	overviewMetricDescription = map[string]*prometheus.GaugeVec{
 		"object_totals.channels":                    newGaugeVec("channels", "Number of channels.", overviewLabels),
@@ -33,7 +33,7 @@ var (
 			Name: "rabbitmq_version_info",
 			Help: "A metric with a constant '1' value labeled by rabbitmq version, erlang version, node, cluster.",
 		},
-		[]string{"rabbitmq", "erlang", "node", "cluster"},
+		[]string{"rabbitmq", "erlang", "node", "clustername"},
 	)
 )
 

@@ -11,8 +11,8 @@ func init() {
 }
 
 var (
-	connectionLabels            = []string{"cluster", "vhost", "node", "peer_host", "user", "self"}
-	connectionLabelsStateMetric = []string{"cluster", "vhost", "node", "peer_host", "user", "state", "self"}
+	connectionLabels            = []string{"clustername", "vhost", "node", "peer_host", "user", "self"}
+	connectionLabelsStateMetric = []string{"clustername", "vhost", "node", "peer_host", "user", "state", "self"}
 	connectionLabelKeys         = []string{"vhost", "node", "peer_host", "user", "state", "node"}
 
 	connectionGaugeVec = map[string]*prometheus.GaugeVec{

@@ -1,21 +1,29 @@
-FROM alpine AS builder
+FROM golang:1.19.5-alpine3.17 AS builder
 
 # Install the Certificate-Authority certificates for the app to be able to make
 # calls to HTTPS endpoints.
 # Git is required for fetching the dependencies.
+WORKDIR /app
+COPY go.mod ./
+COPY go.sum ./
+RUN go mod download
+COPY *.go  ./
 RUN apk add --no-cache ca-certificates
-
+RUN go build -o /rabbitmq_exporter
 # Final stage: the running container.
-FROM scratch AS final
+FROM alpine as final
+#FROM scratch AS final
 
 # Add maintainer label in case somebody has questions.
-LABEL maintainer="Kris.Budde@gmail.com"
+LABEL maintainer="duxatomik@gmail.com"
 
 # Import the Certificate-Authority certificates for enabling HTTPS.
-COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+#COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=builder /rabbitmq_exporter /rabbitmq_exporter
+COPY ca-certificates.crt /etc/ssl/certs/
 
 # Import the compiled executable from the first stage.
-COPY rabbitmq_exporter /rabbitmq_exporter
+#COPY rabbitmq_exporter.exe /rabbitmq_exporter
 
 # Declare the port on which the webserver will be exposed.
 # As we're going to run the executable as an unprivileged user, we can't bind
